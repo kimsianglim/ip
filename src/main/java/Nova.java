@@ -8,6 +8,9 @@ public class Nova {
 
         Scanner scanner = new Scanner(System.in);
 
+        String[] items = new String[100];
+        int count = 0;
+
         while (true) {
             String input = scanner.nextLine();
 
@@ -18,8 +21,20 @@ public class Nova {
                 break;
             }
 
+            if (input.equals("list")) {
+                System.out.println("----------------------------------------");
+                for (int i = 0; i < count; i++) {
+                    System.out.println((i + 1) + ". " + items[i]);
+                }
+                System.out.println("----------------------------------------");
+                continue;
+            }
+
+            items[count] = input;
+            count++;
+
             System.out.println("----------------------------------------");
-            System.out.println(input);
+            System.out.println("added: " + input);
             System.out.println("----------------------------------------");
         }
     }
