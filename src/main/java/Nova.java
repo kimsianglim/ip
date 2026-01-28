@@ -48,7 +48,7 @@ public class Nova {
 
                 System.out.println(LINE);
                 System.out.println("Nice! I've marked this task as done:");
-                System.out.println(tasks[idx]);
+                System.out.println("  " + tasks[idx]);
                 System.out.println(LINE);
                 continue;
             }
@@ -67,7 +67,7 @@ public class Nova {
 
                 System.out.println(LINE);
                 System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println(tasks[idx]);
+                System.out.println("  " + tasks[idx]);
                 System.out.println(LINE);
                 continue;
             }
