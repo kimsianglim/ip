@@ -48,7 +48,7 @@ public class Nova {
 
                 System.out.println(LINE);
                 System.out.println("Nice! I've marked this task as done:");
-                System.out.println(tasks[idx]); // prints [X] description
+                System.out.println(tasks[idx]);
                 System.out.println(LINE);
                 continue;
             }
@@ -67,16 +67,69 @@ public class Nova {
 
                 System.out.println(LINE);
                 System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println(tasks[idx]); // prints [ ] description
+                System.out.println(tasks[idx]);
                 System.out.println(LINE);
                 continue;
             }
 
-            tasks[count] = new Task(input);
-            System.out.println(LINE);
-            System.out.println("added: " + tasks[count]); // shows [ ] description
-            System.out.println(LINE);
-            count++;
+            if (input.startsWith("todo ")) {
+                String desc = input.substring(5).trim();
+                tasks[count] = new ToDo(desc);
+                count++;
+                System.out.println(LINE);
+                System.out.println("Got it. I've added this task:");
+                System.out.println("  " + tasks[count - 1]);
+                System.out.println("Now you have " + count + " tasks in the list.");
+                System.out.println(LINE);
+                continue;
+            }
+
+            if (input.startsWith("deadline ")) {
+                // format: deadline <desc> /by <by>
+                int byIndex = input.indexOf(" /by ");
+                if (byIndex == -1) {
+                    System.out.println(LINE);
+                    System.out.println("follow this format: deadline <description> /by <time>");
+                    System.out.println(LINE);
+                    continue;
+                }
+                String desc = input.substring(9, byIndex).trim();
+                String by = input.substring(byIndex + 5).trim();
+
+                tasks[count] = new Deadline(desc, by);
+                count++;
+                System.out.println(LINE);
+                System.out.println("Got it. I've added this task:");
+                System.out.println("  " + tasks[count - 1]);
+                System.out.println("Now you have " + count + " tasks in the list.");
+                System.out.println(LINE);
+                continue;
+            }
+
+            if (input.startsWith("event ")) {
+                // format: event <desc> /from <from> /to <to>
+                int fromIndex = input.indexOf(" /from ");
+                int toIndex = input.indexOf(" /to ");
+                if (fromIndex == -1 || toIndex == -1 || toIndex < fromIndex) {
+                    System.out.println(LINE);
+                    System.out.println("follow this format: event <description> /from <start> /to <end>");
+                    System.out.println(LINE);
+                    continue;
+                }
+
+                String desc = input.substring(6, fromIndex).trim();
+                String from = input.substring(fromIndex + 7, toIndex).trim();
+                String to = input.substring(toIndex + 5).trim();
+
+                tasks[count] = new Event(desc, from, to);
+                count++;
+                System.out.println(LINE);
+                System.out.println("Got it. I've added this task:");
+                System.out.println("  " + tasks[count - 1]);
+                System.out.println("Now you have " + count + " tasks in the list.");
+                System.out.println(LINE);
+            }
+
         }
     }
 }
