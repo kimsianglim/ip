@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -12,13 +13,20 @@ public class Nova {
 
         Scanner scanner = new Scanner(System.in);
 
-        ArrayList<Task> tasks = new ArrayList<>();
+        Storage storage = new Storage("data", "nova.txt");
+        ArrayList<Task> tasks;
+
+        try {
+            tasks = storage.loadTasks();
+        } catch (IOException e) {
+            tasks = new ArrayList<>();
+        }
 
         while (true) {
             String input = scanner.nextLine().trim();
 
             try {
-                processLogic(input, tasks);
+                processLogic(input, tasks, storage);
                 if (input.equals("bye")) {
                     break;
                 }
@@ -26,11 +34,23 @@ public class Nova {
                 System.out.println(LINE);
                 System.out.println("OOPS!!! " + e.getMessage());
                 System.out.println(LINE);
+            } catch (IOException e) {
+                System.out.println(LINE);
+                System.out.println("OOPS!!! I couldn't save/load your tasks file.");
+                System.out.println(LINE);
             }
         }
     }
 
-    private static void processLogic(String input, ArrayList<Task> tasks) throws NovaException {
+    private static void save(Storage storage, ArrayList<Task> tasks) throws IOException {
+        storage.saveTasks(tasks);
+
+    }
+
+
+    private static void processLogic(String input, ArrayList<Task> tasks, Storage storage)
+            throws NovaException, IOException {
+
         if (input.equals("bye")) {
             System.out.println(LINE);
             System.out.println("Bye. Hope to see you again soon!");
@@ -60,6 +80,8 @@ public class Nova {
                 }
 
                 tasks.get(markIndex).markAsDone();
+                save(storage, tasks);
+
 
                 System.out.println(LINE);
                 System.out.println("Nice! I've marked this task as done:");
@@ -81,6 +103,8 @@ public class Nova {
                     throw new NovaException("Invalid task number");
                 }
                 tasks.get(unmarkIndex).markAsUndone();
+                save(storage, tasks);
+
 
                 System.out.println(LINE);
                 System.out.println("OK, I've marked this task as not done yet:");
@@ -104,6 +128,8 @@ public class Nova {
                 }
 
                 Task removed = tasks.remove(deleteIndex);
+                save(storage, tasks);
+
 
                 System.out.println(LINE);
                 System.out.println("Noted. I've removed this task:");
@@ -126,6 +152,9 @@ public class Nova {
                 throw new NovaException("The description of a todo cannot be empty.");
             }
             tasks.add(new ToDo(desc));
+            save(storage, tasks);
+
+
             System.out.println(LINE);
             System.out.println("Got it. I've added this task:");
             System.out.println("  " + tasks.get(tasks.size() - 1));
@@ -151,6 +180,9 @@ public class Nova {
             }
 
             tasks.add(new Deadline(desc, by));
+            save(storage, tasks);
+
+
             System.out.println(LINE);
             System.out.println("Got it. I've added this task:");
             System.out.println("  " + tasks.get(tasks.size() - 1));
@@ -177,6 +209,8 @@ public class Nova {
             }
 
             tasks.add(new Event(desc, from, to));
+            save(storage, tasks);
+
             System.out.println(LINE);
             System.out.println("Got it. I've added this task:");
             System.out.println("  " + tasks.get(tasks.size() - 1));
