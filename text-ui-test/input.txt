@@ -9,4 +9,5 @@ blah
 todo
 deadline return /
 event bbb
+delete 2
 bye

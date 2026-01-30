@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Nova {
 
@@ -11,14 +12,13 @@ public class Nova {
 
         Scanner scanner = new Scanner(System.in);
 
-        Task[] tasks = new Task[100];
-        int count = 0;
+        ArrayList<Task> tasks = new ArrayList<>();
 
         while (true) {
             String input = scanner.nextLine().trim();
 
             try {
-                count = processLogic(input, tasks, count);
+                processLogic(input, tasks);
                 if (input.equals("bye")) {
                     break;
                 }
@@ -30,72 +30,109 @@ public class Nova {
         }
     }
 
-    private static int processLogic(String input, Task[] tasks, int count) throws NovaException {
+    private static void processLogic(String input, ArrayList<Task> tasks) throws NovaException {
         if (input.equals("bye")) {
             System.out.println(LINE);
             System.out.println("Bye. Hope to see you again soon!");
             System.out.println(LINE);
-            return count;
+
+            return;
         }
 
         if (input.equals("list")) {
             System.out.println(LINE);
             System.out.println("Here are the tasks in your list:");
-            for (int i = 0; i < count; i++) {
-                System.out.println((i + 1) + ". " + tasks[i]);
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println((i + 1) + ". " + tasks.get(i));
             }
             System.out.println(LINE);
-            return count;
+
+            return;
 
         }
 
         if (input.startsWith("mark ")) {
-            int idx = Integer.parseInt(input.substring(5).trim()) - 1;
+            try {
+                int markIndex = Integer.parseInt(input.substring(5).trim()) - 1;
 
-            if (idx < 0 || idx >= count) {
-                throw new NovaException("Invalid task number");
+                if (markIndex < 0 || markIndex >= tasks.size()) {
+                    throw new NovaException("Invalid task number");
+                }
+
+                tasks.get(markIndex).markAsDone();
+
+                System.out.println(LINE);
+                System.out.println("Nice! I've marked this task as done:");
+                System.out.println("  " + tasks.get(markIndex));
+                System.out.println(LINE);
+
+            } catch (NumberFormatException e) {
+                throw new NovaException("mark needs a task number, e.g. mark 1");
             }
 
-            tasks[idx].markAsDone();
-
-            System.out.println(LINE);
-            System.out.println("Nice! I've marked this task as done:");
-            System.out.println("  " + tasks[idx]);
-            System.out.println(LINE);
-            return count;
+            return;
 
         }
 
         if (input.startsWith("unmark ")) {
-            int idx = Integer.parseInt(input.substring(7).trim()) - 1;
+            try {
+                int unmarkIndex = Integer.parseInt(input.substring(7).trim()) - 1;
+                if (unmarkIndex < 0 || unmarkIndex >= tasks.size()) {
+                    throw new NovaException("Invalid task number");
+                }
+                tasks.get(unmarkIndex).markAsUndone();
 
-            if (idx < 0 || idx >= count) {
-                throw new NovaException("Invalid task number");
+                System.out.println(LINE);
+                System.out.println("OK, I've marked this task as not done yet:");
+                System.out.println("  " + tasks.get(unmarkIndex));
+                System.out.println(LINE);
+
+            } catch (NumberFormatException e) {
+                throw new NovaException("unmark needs a task number, e.g. unmark 1");
             }
 
-            tasks[idx].markAsUndone();
-
-            System.out.println(LINE);
-            System.out.println("OK, I've marked this task as not done yet:");
-            System.out.println("  " + tasks[idx]);
-            System.out.println(LINE);
-            return count;
+            return;
 
         }
 
-        if (input.startsWith("todo ")) {
-            String desc = input.substring(5).trim();
+        if (input.startsWith("delete ")) {
+            try {
+                int deleteIndex = Integer.parseInt(input.substring(7).trim()) - 1;
+
+                if (deleteIndex < 0 || deleteIndex >= tasks.size()) {
+                    throw new NovaException("Invalid task number");
+                }
+
+                Task removed = tasks.remove(deleteIndex);
+
+                System.out.println(LINE);
+                System.out.println("Noted. I've removed this task:");
+                System.out.println("  " + removed);
+                System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                System.out.println(LINE);
+
+            } catch (NumberFormatException e) {
+                throw new NovaException("delete needs a task number, e.g. delete 1");
+            }
+
+            return;
+        }
+
+
+        if (input.equals("todo") || input.startsWith("todo ")) {
+            String desc = input.length() > 4 ? input.substring(4).trim() : "";
+
             if (desc.isEmpty()) {
                 throw new NovaException("The description of a todo cannot be empty.");
             }
-            tasks[count] = new ToDo(desc);
-            count++;
+            tasks.add(new ToDo(desc));
             System.out.println(LINE);
             System.out.println("Got it. I've added this task:");
-            System.out.println("  " + tasks[count - 1]);
-            System.out.println("Now you have " + count + " tasks in the list.");
+            System.out.println("  " + tasks.get(tasks.size() - 1));
+            System.out.println("Now you have " + tasks.size() + " tasks in the list.");
             System.out.println(LINE);
-            return count;
+
+            return;
 
         }
 
@@ -113,14 +150,14 @@ public class Nova {
                 throw new NovaException("description and by time cannot be empty.");
             }
 
-            tasks[count] = new Deadline(desc, by);
-            count++;
+            tasks.add(new Deadline(desc, by));
             System.out.println(LINE);
             System.out.println("Got it. I've added this task:");
-            System.out.println("  " + tasks[count - 1]);
-            System.out.println("Now you have " + count + " tasks in the list.");
+            System.out.println("  " + tasks.get(tasks.size() - 1));
+            System.out.println("Now you have " + tasks.size() + " tasks in the list.");
             System.out.println(LINE);
-            return count;
+
+            return;
         }
 
         if (input.startsWith("event ")) {
@@ -139,15 +176,14 @@ public class Nova {
                 throw new NovaException("description and time cannot be empty.");
             }
 
-            tasks[count] = new Event(desc, from, to);
-            count++;
+            tasks.add(new Event(desc, from, to));
             System.out.println(LINE);
             System.out.println("Got it. I've added this task:");
-            System.out.println("  " + tasks[count - 1]);
-            System.out.println("Now you have " + count + " tasks in the list.");
+            System.out.println("  " + tasks.get(tasks.size() - 1));
+            System.out.println("Now you have " + tasks.size() + " tasks in the list.");
             System.out.println(LINE);
 
-            return count;
+            return;
         }
 
         throw new NovaException("So sorry, I don't understand what that means.");

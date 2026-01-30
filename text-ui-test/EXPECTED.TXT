@@ -34,5 +34,22 @@ OK, I've marked this task as not done yet:
   [D][ ] return book (by: Sunday)
 ----------------------------------------
 ----------------------------------------
+OOPS!!! So sorry, I don't understand what that means.
+----------------------------------------
+----------------------------------------
+OOPS!!! So sorry, I don't understand what that means.
+----------------------------------------
+----------------------------------------
+OOPS!!! follow this format: deadline <description> /by <time>
+----------------------------------------
+----------------------------------------
+OOPS!!! follow this format: event <description> /from <start> /to <end>
+----------------------------------------
+----------------------------------------
+Noted. I've removed this task:
+  [D][ ] return book (by: Sunday)
+Now you have 2 tasks in the list.
+----------------------------------------
+----------------------------------------
 Bye. Hope to see you again soon!
 ----------------------------------------
