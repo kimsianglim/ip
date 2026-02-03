@@ -8,8 +8,8 @@ import java.util.List;
 public class Storage {
     private final Path filePath;
 
-    public Storage(String folder, String fileName) {
-        this.filePath = Paths.get(folder, fileName);
+    public Storage(String filePath) {
+        this.filePath = java.nio.file.Paths.get(filePath);
     }
 
     private void ensureExists() throws IOException {
