@@ -1,3 +1,5 @@
+package nova;
+
 public class Command {
     public final CommandType type;
     public final Integer index;

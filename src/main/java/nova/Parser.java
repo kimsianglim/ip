@@ -1,3 +1,5 @@
+package nova;
+
 public class Parser {
 
     public static Command parse(String input) throws NovaException {
