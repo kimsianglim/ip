@@ -116,6 +116,15 @@ public class Nova {
                 ui.showTaskAdded(tasks.get(tasks.size() - 1).toString(), tasks.size());
                 return false;
 
+            case FIND:
+                ArrayList<Integer> matches = tasks.findIndexes(cmd.getDescription());
+                ui.showFindHeader();
+                for (int idx : matches) {
+                    ui.showListItem(idx + 1, tasks.get(idx).toString());
+                }
+                ui.showListFooter();
+                return false;
+
             default:
                 throw new NovaException("So sorry, I don't understand what that means.");
         }

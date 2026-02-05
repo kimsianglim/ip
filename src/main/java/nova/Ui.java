@@ -103,4 +103,9 @@ public class Ui {
         System.out.println("Now you have " + size + " tasks in the list.");
         System.out.println(LINE);
     }
+
+    public void showFindHeader() {
+        System.out.println(LINE);
+        System.out.println("Here are the matching tasks in your list:");
+    }
 }

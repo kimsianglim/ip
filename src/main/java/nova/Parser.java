@@ -87,6 +87,14 @@ public class Parser {
             return Command.event(desc, from, to);
         }
 
+        if (input.equals("find") || input.startsWith("find ")) {
+            String keyword = input.length() > 4 ? input.substring(4).trim() : "";
+            if (keyword.isEmpty()) {
+                throw new NovaException("The keyword for find cannot be empty.");
+            }
+            return Command.find(keyword);
+        }
+
         throw new NovaException("So sorry, I don't understand what that means.");
     }
 

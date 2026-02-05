@@ -70,4 +70,8 @@ public class Command {
     public static Command event(String desc, String from, String to) {
         return new Command(CommandType.EVENT, null, desc, null, from, to);
     }
+
+    public static Command find(String keyword) {
+        return new Command(CommandType.FIND, null, keyword, null, null, null);
+    }
 }
