@@ -1,4 +1,4 @@
-package nova;
+package task;
 
 public class Task {
     private String description;

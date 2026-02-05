@@ -2,6 +2,7 @@ package nova;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import exception.NovaException;
 import org.junit.jupiter.api.Test;
 
 public class ParserTest {

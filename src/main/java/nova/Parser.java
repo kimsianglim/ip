@@ -1,5 +1,7 @@
 package nova;
 
+import exception.NovaException;
+
 public class Parser {
 
     public static Command parse(String input) throws NovaException {

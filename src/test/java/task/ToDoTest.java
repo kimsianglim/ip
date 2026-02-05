@@ -1,4 +1,4 @@
-package nova;
+package task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
