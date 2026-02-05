@@ -6,6 +6,11 @@ public class Ui {
     private static final String LINE = "----------------------------------------";
     private final Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Displays the welcome message when the application starts.
+     * <p>
+     * Prints a greeting, a short prompt, and a separator line to the console.
+     */
     public void showWelcome() {
         System.out.println("Hello! I'm nova.Nova");
         System.out.println("What can I do for you?");
@@ -16,6 +21,14 @@ public class Ui {
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Displays an error message to the user.
+     * <p>
+     * Prints the given message prefixed with an error indicator and
+     * surrounded by separator lines.
+     *
+     * @param message The error message to be displayed.
+     */
     public void showError(String message) {
         System.out.println(LINE);
         System.out.println("OOPS!!! " + message);
@@ -26,6 +39,11 @@ public class Ui {
         showError("I couldn't load your tasks file.");
     }
 
+    /**
+     * Displays the farewell message when the application exits.
+     * <p>
+     * Prints a goodbye message surrounded by separator lines.
+     */
     public void showBye() {
         System.out.println(LINE);
         System.out.println("Bye. Hope to see you again soon!");

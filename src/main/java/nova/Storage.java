@@ -23,6 +23,16 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads tasks from the storage file.
+     * <p>
+     * Ensures that the storage file and its parent directories exist,
+     * then reads and parses each non-empty line into a {@link Task}.
+     *
+     * @return A list of tasks loaded from the file. Returns an empty list
+     *         if the file contains no tasks.
+     * @throws IOException If an I/O error occurs while accessing the file.
+     */
     public ArrayList<Task> loadTasks() throws IOException {
         ensureExists();
         List<String> lines = Files.readAllLines(filePath);
@@ -35,6 +45,15 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves the given list of tasks to the storage file.
+     * <p>
+     * Ensures that the storage file and its parent directories exist,
+     * then writes each task to the file using its file representation.
+     *
+     * @param tasks The list of tasks to be saved.
+     * @throws IOException If an I/O error occurs while writing to the file.
+     */
     public void saveTasks(ArrayList<Task> tasks) throws IOException {
         ensureExists();
         List<String> lines = new ArrayList<>();

@@ -2,6 +2,25 @@ package nova;
 
 public class Parser {
 
+    /**
+     * Parses the user input string into a {@link Command}.
+     * <p>
+     * Recognised commands include:
+     * <ul>
+     *   <li>{@code bye}</li>
+     *   <li>{@code list}</li>
+     *   <li>{@code mark <taskNumber>}</li>
+     *   <li>{@code unmark <taskNumber>}</li>
+     *   <li>{@code delete <taskNumber>}</li>
+     *   <li>{@code todo <description>}</li>
+     *   <li>{@code deadline <description> /by <time>}</li>
+     *   <li>{@code event <description> /from <start> /to <end>}</li>
+     * </ul>
+     *
+     * @param input The raw command entered by the user.
+     * @return A {@code Command} representing the parsed user input.
+     * @throws NovaException If the input is invalid, missing required parts, or the command is unrecognised.
+     */
     public static Command parse(String input) throws NovaException {
         if (input.equals("bye")) return Command.exit();
         if (input.equals("list")) return Command.list();

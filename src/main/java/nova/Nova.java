@@ -25,6 +25,17 @@ public class Nova {
         tasks = loaded;
     }
 
+    /**
+     * Runs the main command loop of the application.
+     * <p>
+     * Displays a welcome message, then repeatedly reads user input,
+     * parses it into a {@link Command}, and executes it until an exit
+     * command is issued.
+     * <p>
+     * Any {@link NovaException} thrown during parsing or execution is
+     * caught and shown to the user as an error message. Any {@link IOException}
+     * related to loading or saving tasks is also caught and reported.
+     */
     public void run() {
         ui.showWelcome();
 

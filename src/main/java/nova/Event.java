@@ -36,17 +36,17 @@ public class Event extends Task {
     }
 
     private static Temporal tryParse(String s) {
-        // Try DateTime
+
         try {
             return LocalDateTime.parse(s, DATETIME_INPUT);
         } catch (DateTimeParseException ignored) { }
 
-        // Try Date
+
         try {
             return LocalDate.parse(s);
         } catch (DateTimeParseException ignored) { }
 
-        // Try Time
+
         try {
             return LocalTime.parse(s);
         } catch (DateTimeParseException ignored) { }
