@@ -7,9 +7,14 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.Temporal;
 
+/**
+ * Represents an event task.
+ * <p>
+ * A {@code Event} is a {@link Task} that starts at a specific date/time and ends at a specific date/time
+ */
 public class Event extends Task {
-    protected String from;
-    protected String to;
+    private final String from;
+    private final String to;
 
     private final Temporal fromTemporal;
     private final Temporal toTemporal;
@@ -36,17 +41,17 @@ public class Event extends Task {
     }
 
     private static Temporal tryParse(String s) {
-        // Try DateTime
+
         try {
             return LocalDateTime.parse(s, DATETIME_INPUT);
         } catch (DateTimeParseException ignored) { }
 
-        // Try Date
+
         try {
             return LocalDate.parse(s);
         } catch (DateTimeParseException ignored) { }
 
-        // Try Time
+
         try {
             return LocalTime.parse(s);
         } catch (DateTimeParseException ignored) { }

@@ -6,6 +6,13 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Handles storage of tasks.
+ * <p>
+ * {@code Storage} is responsible for reading tasks from and writing tasks
+ * to a file on disk. It ensures that the storage file and its parent
+ * directories exist before performing any file operations.
+ */
 public class Storage {
     private final Path filePath;
 
@@ -23,18 +30,39 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads tasks from the storage file.
+     * <p>
+     * Ensures that the storage file and its parent directories exist,
+     * then reads and parses each non-empty line into a {@link Task}.
+     *
+     * @return A list of tasks loaded from the file. Returns an empty list
+     *         if the file contains no tasks.
+     * @throws IOException If an I/O error occurs while accessing the file.
+     */
     public ArrayList<Task> loadTasks() throws IOException {
         ensureExists();
         List<String> lines = Files.readAllLines(filePath);
 
         ArrayList<Task> tasks = new ArrayList<>();
         for (String line : lines) {
-            if (line.trim().isEmpty()) continue;
+            if (line.trim().isEmpty()) {
+                continue;
+            }
             tasks.add(parseTask(line));
         }
         return tasks;
     }
 
+    /**
+     * Saves the given list of tasks to the storage file.
+     * <p>
+     * Ensures that the storage file and its parent directories exist,
+     * then writes each task to the file using its file representation.
+     *
+     * @param tasks The list of tasks to be saved.
+     * @throws IOException If an I/O error occurs while writing to the file.
+     */
     public void saveTasks(ArrayList<Task> tasks) throws IOException {
         ensureExists();
         List<String> lines = new ArrayList<>();
