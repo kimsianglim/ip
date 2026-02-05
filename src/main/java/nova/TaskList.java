@@ -46,4 +46,14 @@ public class TaskList {
     public ArrayList<Task> getTasks() {
         return tasks;
     }
+
+    public ArrayList<Integer> findIndexes(String keyword) {
+        ArrayList<Integer> matches = new ArrayList<>();
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).getDescription().contains(keyword)) {
+                matches.add(i);
+            }
+        }
+        return matches;
+    }
 }
