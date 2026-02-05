@@ -1,12 +1,12 @@
 package nova;
 
 public class Command {
-    public final CommandType type;
-    public final Integer index;
-    public final String desc;
-    public final String by;
-    public final String from;
-    public final String to;
+    private final CommandType type;
+    private final Integer index;
+    private final String desc;
+    private final String by;
+    private final String from;
+    private final String to;
 
     private Command(CommandType type, Integer index, String desc, String by, String from, String to) {
         this.type = type;
@@ -15,6 +15,30 @@ public class Command {
         this.by = by;
         this.from = from;
         this.to = to;
+    }
+
+    public CommandType getType() {
+        return type;
+    }
+
+    public Integer getIndex() {
+        return index;
+    }
+
+    public String getDescription() {
+        return desc;
+    }
+
+    public String getBy() {
+        return by;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public String getTo() {
+        return to;
     }
 
     public static Command exit() { return new Command(CommandType.EXIT, null, null, null, null, null); }

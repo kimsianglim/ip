@@ -46,7 +46,7 @@ public class Nova {
     }
 
     private boolean execute(Command cmd) throws NovaException, IOException {
-        switch (cmd.type) {
+        switch (cmd.getType()) {
             case EXIT:
                 ui.showBye();
                 return true;
@@ -61,37 +61,37 @@ public class Nova {
                 return false;
 
             case MARK:
-                tasks.mark(cmd.index);
+                tasks.mark(cmd.getIndex());
                 storage.saveTasks(tasks.getTasks());
-                ui.showTaskMarked(tasks.get(cmd.index).toString());
+                ui.showTaskMarked(tasks.get(cmd.getIndex()).toString());
                 return false;
 
             case UNMARK:
-                tasks.unmark(cmd.index);
+                tasks.unmark(cmd.getIndex());
                 storage.saveTasks(tasks.getTasks());
-                ui.showTaskUnmarked(tasks.get(cmd.index).toString());
+                ui.showTaskUnmarked(tasks.get(cmd.getIndex()).toString());
                 return false;
 
             case DELETE:
-                Task removed = tasks.remove(cmd.index);
+                Task removed = tasks.remove(cmd.getIndex());
                 storage.saveTasks(tasks.getTasks());
                 ui.showTaskDeleted(removed.toString(), tasks.size());
                 return false;
 
             case TODO:
-                tasks.add(new ToDo(cmd.desc));
+                tasks.add(new ToDo(cmd.getDescription()));
                 storage.saveTasks(tasks.getTasks());
                 ui.showTaskAdded(tasks.get(tasks.size() - 1).toString(), tasks.size());
                 return false;
 
             case DEADLINE:
-                tasks.add(new Deadline(cmd.desc, cmd.by));
+                tasks.add(new Deadline(cmd.getDescription(), cmd.getBy()));
                 storage.saveTasks(tasks.getTasks());
                 ui.showTaskAdded(tasks.get(tasks.size() - 1).toString(), tasks.size());
                 return false;
 
             case EVENT:
-                tasks.add(new Event(cmd.desc, cmd.from, cmd.to));
+                tasks.add(new Event(cmd.getDescription(), cmd.getFrom(), cmd.getTo()));
                 storage.saveTasks(tasks.getTasks());
                 ui.showTaskAdded(tasks.get(tasks.size() - 1).toString(), tasks.size());
                 return false;
