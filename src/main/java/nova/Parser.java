@@ -1,5 +1,7 @@
 package nova;
 
+import exception.NovaException;
+
 /**
  * Parses user input into {@link Command} objects.
  * <p>

@@ -1,4 +1,6 @@
-package nova;
+package task;
+
+import exception.NovaException;
 
 import java.util.ArrayList;
 
