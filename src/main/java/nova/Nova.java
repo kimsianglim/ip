@@ -3,7 +3,13 @@ package nova;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
+/**
+ * The main entry point for the Nova application.
+ * <p>
+ * It works with {@link Ui}, {@link Parser}, {@link TaskList},
+ * and {@link Storage}, loads existing tasks on startup and runs a command loop
+ * until the user exits.
+ */
 public class Nova {
 
     private final Storage storage;

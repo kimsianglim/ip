@@ -1,5 +1,11 @@
 package nova;
 
+/**
+ * Parses user input into {@link Command} objects.
+ * <p>
+ * This class contains utility methods for validating and interpreting
+ * raw command strings entered by the user.
+ */
 public class Parser {
 
     /**
@@ -22,8 +28,13 @@ public class Parser {
      * @throws NovaException If the input is invalid, missing required parts, or the command is unrecognised.
      */
     public static Command parse(String input) throws NovaException {
-        if (input.equals("bye")) return Command.exit();
-        if (input.equals("list")) return Command.list();
+        if (input.equals("bye")) {
+            return Command.exit();
+        }
+
+        if (input.equals("list")) {
+            return Command.list();
+        }
 
         if (input.startsWith("mark ")) {
             int idx = parseIndex(input.substring(5), "mark needs a task number, e.g. mark 1");

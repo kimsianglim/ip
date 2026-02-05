@@ -2,6 +2,12 @@ package nova;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a collection of tasks.
+ * <p>
+ * {@code TaskList} manages a list of {@link Task} objects and provides
+ * operations to add, remove, retrieve, and update tasks by index.
+ */
 public class TaskList {
     private final ArrayList<Task> tasks;
 
@@ -86,6 +92,6 @@ public class TaskList {
      * @return The list of tasks.
      */
     public ArrayList<Task> getTasks() {
-        return tasks;
+        return new ArrayList<>(tasks);
     }
 }

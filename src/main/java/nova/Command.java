@@ -1,5 +1,8 @@
 package nova;
 
+/**
+ * Represents a parsed user command.
+ */
 public class Command {
     private final CommandType type;
     private final Integer index;
@@ -41,8 +44,12 @@ public class Command {
         return to;
     }
 
-    public static Command exit() { return new Command(CommandType.EXIT, null, null, null, null, null); }
-    public static Command list() { return new Command(CommandType.LIST, null, null, null, null, null); }
+    public static Command exit() {
+        return new Command(CommandType.EXIT, null, null, null, null, null);
+    }
+    public static Command list() {
+        return new Command(CommandType.LIST, null, null, null, null, null);
+    }
 
     public static Command mark(CommandType type, int index) {
         return new Command(type, index, null, null, null, null);

@@ -6,6 +6,13 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Handles storage of tasks.
+ * <p>
+ * {@code Storage} is responsible for reading tasks from and writing tasks
+ * to a file on disk. It ensures that the storage file and its parent
+ * directories exist before performing any file operations.
+ */
 public class Storage {
     private final Path filePath;
 
@@ -39,7 +46,9 @@ public class Storage {
 
         ArrayList<Task> tasks = new ArrayList<>();
         for (String line : lines) {
-            if (line.trim().isEmpty()) continue;
+            if (line.trim().isEmpty()) {
+                continue;
+            }
             tasks.add(parseTask(line));
         }
         return tasks;

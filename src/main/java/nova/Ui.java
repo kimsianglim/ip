@@ -2,6 +2,12 @@ package nova;
 
 import java.util.Scanner;
 
+/**
+ * Handles user interaction via the command line.
+ * <p>
+ * {@code Ui} is responsible for reading user input and displaying messages
+ * such as prompts, errors, and task-related feedback.
+ */
 public class Ui {
     private static final String LINE = "----------------------------------------";
     private final Scanner scanner = new Scanner(System.in);
@@ -17,6 +23,11 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    /**
+     * Reads a command from standard input.
+     *
+     * @return The trimmed user input line.
+     */
     public String readCommand() {
         return scanner.nextLine().trim();
     }
