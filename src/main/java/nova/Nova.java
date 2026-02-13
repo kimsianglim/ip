@@ -67,66 +67,66 @@ public class Nova {
 
     private boolean execute(Command cmd) throws NovaException, IOException {
         switch (cmd.getType()) {
-            case EXIT:
-                ui.showBye();
-                return true;
+        case EXIT:
+            ui.showBye();
+            return true;
 
-            case LIST:
-                ui.showListHeader();
-                for (int i = 0; i < tasks.size(); i++) {
-                    ui.showListItem(i + 1, tasks.get(i).toString());
-                }
-                ui.showListFooter();
-                storage.saveTasks(tasks.getTasks());
-                return false;
+        case LIST:
+            ui.showListHeader();
+            for (int i = 0; i < tasks.size(); i++) {
+                ui.showListItem(i + 1, tasks.get(i).toString());
+            }
+            ui.showListFooter();
+            storage.saveTasks(tasks.getTasks());
+            return false;
 
-            case MARK:
-                tasks.mark(cmd.getIndex());
-                storage.saveTasks(tasks.getTasks());
-                ui.showTaskMarked(tasks.get(cmd.getIndex()).toString());
-                return false;
+        case MARK:
+            tasks.mark(cmd.getIndex());
+            storage.saveTasks(tasks.getTasks());
+            ui.showTaskMarked(tasks.get(cmd.getIndex()).toString());
+            return false;
 
-            case UNMARK:
-                tasks.unmark(cmd.getIndex());
-                storage.saveTasks(tasks.getTasks());
-                ui.showTaskUnmarked(tasks.get(cmd.getIndex()).toString());
-                return false;
+        case UNMARK:
+            tasks.unmark(cmd.getIndex());
+            storage.saveTasks(tasks.getTasks());
+            ui.showTaskUnmarked(tasks.get(cmd.getIndex()).toString());
+            return false;
 
-            case DELETE:
-                Task removed = tasks.remove(cmd.getIndex());
-                storage.saveTasks(tasks.getTasks());
-                ui.showTaskDeleted(removed.toString(), tasks.size());
-                return false;
+        case DELETE:
+            Task removed = tasks.remove(cmd.getIndex());
+            storage.saveTasks(tasks.getTasks());
+            ui.showTaskDeleted(removed.toString(), tasks.size());
+            return false;
 
-            case TODO:
-                tasks.add(new ToDo(cmd.getDescription()));
-                storage.saveTasks(tasks.getTasks());
-                ui.showTaskAdded(tasks.get(tasks.size() - 1).toString(), tasks.size());
-                return false;
+        case TODO:
+            tasks.add(new ToDo(cmd.getDescription()));
+            storage.saveTasks(tasks.getTasks());
+            ui.showTaskAdded(tasks.get(tasks.size() - 1).toString(), tasks.size());
+            return false;
 
-            case DEADLINE:
-                tasks.add(new Deadline(cmd.getDescription(), cmd.getBy()));
-                storage.saveTasks(tasks.getTasks());
-                ui.showTaskAdded(tasks.get(tasks.size() - 1).toString(), tasks.size());
-                return false;
+        case DEADLINE:
+            tasks.add(new Deadline(cmd.getDescription(), cmd.getBy()));
+            storage.saveTasks(tasks.getTasks());
+            ui.showTaskAdded(tasks.get(tasks.size() - 1).toString(), tasks.size());
+            return false;
 
-            case EVENT:
-                tasks.add(new Event(cmd.getDescription(), cmd.getFrom(), cmd.getTo()));
-                storage.saveTasks(tasks.getTasks());
-                ui.showTaskAdded(tasks.get(tasks.size() - 1).toString(), tasks.size());
-                return false;
+        case EVENT:
+            tasks.add(new Event(cmd.getDescription(), cmd.getFrom(), cmd.getTo()));
+            storage.saveTasks(tasks.getTasks());
+            ui.showTaskAdded(tasks.get(tasks.size() - 1).toString(), tasks.size());
+            return false;
 
-            case FIND:
-                ArrayList<Integer> matches = tasks.findIndexes(cmd.getDescription());
-                ui.showFindHeader();
-                for (int idx : matches) {
-                    ui.showListItem(idx + 1, tasks.get(idx).toString());
-                }
-                ui.showListFooter();
-                return false;
+        case FIND:
+            ArrayList<Integer> matches = tasks.findIndexes(cmd.getDescription());
+            ui.showFindHeader();
+            for (int idx : matches) {
+                ui.showListItem(idx + 1, tasks.get(idx).toString());
+            }
+            ui.showListFooter();
+            return false;
 
-            default:
-                throw new NovaException("So sorry, I don't understand what that means.");
+        default:
+            throw new NovaException("So sorry, I don't understand what that means.");
         }
     }
 
