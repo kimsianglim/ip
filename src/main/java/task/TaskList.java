@@ -1,8 +1,8 @@
 package task;
 
-import exception.NovaException;
-
 import java.util.ArrayList;
+
+import exception.NovaException;
 
 /**
  * Represents a collection of tasks.
@@ -97,6 +97,13 @@ public class TaskList {
         return new ArrayList<>(tasks);
     }
 
+    /**
+     * Finds the indexes of tasks whose descriptions contain the given keyword.
+     *
+     * @param keyword The keyword to search for within task descriptions.
+     * @return A list of zero-based indexes of tasks that contain the keyword.
+     *         Returns an empty list if no matches are found.
+     */
     public ArrayList<Integer> findIndexes(String keyword) {
         ArrayList<Integer> matches = new ArrayList<>();
         for (int i = 0; i < tasks.size(); i++) {
