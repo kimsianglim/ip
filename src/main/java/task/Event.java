@@ -13,17 +13,24 @@ import java.time.temporal.Temporal;
  * A {@code Event} is a {@link Task} that starts at a specific date/time and ends at a specific date/time
  */
 public class Event extends Task {
+    private static final DateTimeFormatter DATETIME_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static final DateTimeFormatter DATETIME_OUTPUT = DateTimeFormatter.ofPattern("MMM d yyyy HH:mm");
+    private static final DateTimeFormatter DATE_OUTPUT = DateTimeFormatter.ofPattern("MMM d yyyy");
+    private static final DateTimeFormatter TIME_OUTPUT = DateTimeFormatter.ofPattern("HH:mm");
     private final String from;
     private final String to;
 
     private final Temporal fromTemporal;
     private final Temporal toTemporal;
 
-    private static final DateTimeFormatter DATETIME_INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    private static final DateTimeFormatter DATETIME_OUTPUT = DateTimeFormatter.ofPattern("MMM d yyyy HH:mm");
-    private static final DateTimeFormatter DATE_OUTPUT = DateTimeFormatter.ofPattern("MMM d yyyy");
-    private static final DateTimeFormatter TIME_OUTPUT = DateTimeFormatter.ofPattern("HH:mm");
 
+    /**
+     * Creates an {@code Event} task with the given description and time range.
+     *
+     * @param description Description of the event.
+     * @param from Start time string.
+     * @param to End time string.
+     */
     public Event(String description, String from, String to) {
         super(description);
         this.from = from.trim();
@@ -32,6 +39,14 @@ public class Event extends Task {
         this.toTemporal = tryParse(this.to);
     }
 
+    /**
+     * Creates an {@code Event} task with the given description, time range, and completion status.
+     *
+     * @param description Description of the event.
+     * @param from Start time string.
+     * @param to End time string.
+     * @param isDone Whether the task is marked as done.
+     */
     public Event(String description, String from, String to, boolean isDone) {
         super(description, isDone);
         this.from = from.trim();
@@ -41,20 +56,23 @@ public class Event extends Task {
     }
 
     private static Temporal tryParse(String s) {
-
         try {
             return LocalDateTime.parse(s, DATETIME_INPUT);
-        } catch (DateTimeParseException ignored) { }
-
+        } catch (DateTimeParseException ignored) {
+            // Fall through and try parsing as date.
+        }
 
         try {
             return LocalDate.parse(s);
-        } catch (DateTimeParseException ignored) { }
-
+        } catch (DateTimeParseException ignored) {
+            // Fall through and try parsing as time.
+        }
 
         try {
             return LocalTime.parse(s);
-        } catch (DateTimeParseException ignored) { }
+        } catch (DateTimeParseException ignored) {
+            // Parsing failed for all supported formats.
+        }
 
         return null;
     }

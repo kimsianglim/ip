@@ -61,19 +61,41 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    /**
+     * Displays the header for the task list.
+     * <p>
+     * Prints a separator line followed by a message indicating
+     * that the list of tasks will be shown.
+     */
     public void showListHeader() {
         System.out.println(LINE);
         System.out.println("Here are the tasks in your list:");
     }
 
+    /**
+     * Displays a single task item in the task list.
+     *
+     * @param index The one-based index of the task.
+     * @param taskString The string representation of the task.
+     */
     public void showListItem(int index, String taskString) {
         System.out.println(index + ". " + taskString);
     }
 
+    /**
+     * Displays the footer for the task list.
+     * <p>
+     * Prints a separator line to indicate the end of the list.
+     */
     public void showListFooter() {
         System.out.println(LINE);
     }
 
+    /**
+     * Displays a confirmation message that a task has been marked as done.
+     *
+     * @param taskString The string representation of the marked task.
+     */
     public void showTaskMarked(String taskString) {
         System.out.println(LINE);
         System.out.println("Nice! I've marked this task as done:");
@@ -81,6 +103,11 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    /**
+     * Displays a confirmation message that a task has been marked as not done.
+     *
+     * @param taskString The string representation of the unmarked task.
+     */
     public void showTaskUnmarked(String taskString) {
         System.out.println(LINE);
         System.out.println("OK, I've marked this task as not done yet:");
@@ -88,6 +115,12 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    /**
+     * Displays a confirmation message that a task has been deleted.
+     *
+     * @param removedTaskString The string representation of the deleted task.
+     * @param remaining The number of tasks remaining in the list.
+     */
     public void showTaskDeleted(String removedTaskString, int remaining) {
         System.out.println(LINE);
         System.out.println("Noted. I've removed this task:");
@@ -96,6 +129,12 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    /**
+     * Displays a confirmation message that a task has been added.
+     *
+     * @param taskString The string representation of the added task.
+     * @param size The updated number of tasks in the list.
+     */
     public void showTaskAdded(String taskString, int size) {
         System.out.println(LINE);
         System.out.println("Got it. I've added this task:");
@@ -104,6 +143,12 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    /**
+     * Displays the header for the find results.
+     * <p>
+     * Prints a separator line followed by a message indicating
+     * that matching tasks will be shown.
+     */
     public void showFindHeader() {
         System.out.println(LINE);
         System.out.println("Here are the matching tasks in your list:");

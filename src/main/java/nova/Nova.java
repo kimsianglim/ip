@@ -1,10 +1,14 @@
 package nova;
 
-import exception.NovaException;
-import task.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
+
+import exception.NovaException;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.TaskList;
+import task.ToDo;
 
 /**
  * The main entry point for the Nova application.
@@ -19,6 +23,16 @@ public class Nova {
     private final TaskList tasks;
     private final Ui ui;
 
+    /**
+     * Constructs a {@code Nova} application instance.
+     * <p>
+     * Initializes the user interface and storage components, and attempts
+     * to load existing tasks from the specified file path. If loading fails
+     * due to an I/O error, an error message is displayed and the application
+     * starts with an empty task list.
+     *
+     * @param filePath The file path used for loading and saving tasks.
+     */
     public Nova(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);

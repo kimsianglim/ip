@@ -1,15 +1,15 @@
 package nova;
 
-import task.Deadline;
-import task.Event;
-import task.Task;
-import task.ToDo;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.ToDo;
 
 /**
  * Handles storage of tasks.
@@ -84,14 +84,14 @@ public class Storage {
         String desc = parts[2];
 
         switch (type) {
-            case "T":
-                return new ToDo(desc, isDone);
-            case "D":
-                return new Deadline(desc, parts[3], isDone);
-            case "E":
-                return new Event(desc, parts[3], parts[4], isDone);
-            default:
-                throw new IllegalArgumentException("Corrupted save file line: " + line);
+        case "T":
+            return new ToDo(desc, isDone);
+        case "D":
+            return new Deadline(desc, parts[3], isDone);
+        case "E":
+            return new Event(desc, parts[3], parts[4], isDone);
+        default:
+            throw new IllegalArgumentException("Corrupted save file line: " + line);
         }
     }
 }

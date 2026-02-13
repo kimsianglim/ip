@@ -55,17 +55,23 @@ public class Parser {
 
         if (input.equals("todo") || input.startsWith("todo ")) {
             String desc = input.length() > 4 ? input.substring(4).trim() : "";
-            if (desc.isEmpty()) throw new NovaException("The description of a todo cannot be empty.");
+            if (desc.isEmpty()) {
+                throw new NovaException("The description of a todo cannot be empty.");
+            }
             return Command.todo(desc);
         }
 
         if (input.startsWith("deadline ")) {
             int byIndex = input.indexOf(" /by ");
-            if (byIndex == -1) throw new NovaException("follow this format: deadline <description> /by <time>");
+            if (byIndex == -1) {
+                throw new NovaException("follow this format: deadline <description> /by <time>");
+            }
 
             String desc = input.substring(9, byIndex).trim();
             String by = input.substring(byIndex + 5).trim();
-            if (desc.isEmpty() || by.isEmpty()) throw new NovaException("description and by time cannot be empty.");
+            if (desc.isEmpty() || by.isEmpty()) {
+                throw new NovaException("description and by time cannot be empty.");
+            }
 
             return Command.deadline(desc, by);
         }
