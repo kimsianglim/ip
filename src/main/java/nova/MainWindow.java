@@ -40,7 +40,9 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
+        assert nova != null : "Nova instance not injected. Call setNova() before user input.";
         String input = userInput.getText();
+        assert input != null : "TextField.getText() should not return null";
         String response = nova.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
