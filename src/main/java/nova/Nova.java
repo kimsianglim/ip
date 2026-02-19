@@ -144,6 +144,79 @@ public class Nova {
         }
     }
 
+    private String executeForGui(Command cmd) throws NovaException, IOException {
+        switch (cmd.getType()) {
+        case EXIT:
+            return "Bye. Hope to see you again soon!";
+
+        case LIST: {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Here are the tasks in your list:\n");
+            for (int i = 0; i < tasks.size(); i++) {
+                sb.append(i + 1).append(". ").append(tasks.get(i)).append("\n");
+            }
+            return sb.toString().trim();
+        }
+
+        case MARK: {
+            tasks.mark(cmd.getIndex());
+            storage.saveTasks(tasks.getTasks());
+            return "Nice! I've marked this task as done:\n  " + tasks.get(cmd.getIndex());
+        }
+
+        case UNMARK: {
+            tasks.unmark(cmd.getIndex());
+            storage.saveTasks(tasks.getTasks());
+            return "OK, I've marked this task as not done yet:\n  " + tasks.get(cmd.getIndex());
+        }
+
+        case DELETE: {
+            Task removed = tasks.remove(cmd.getIndex());
+            storage.saveTasks(tasks.getTasks());
+            return "Noted. I've removed this task:\n  " + removed
+                    + "\nNow you have " + tasks.size() + " tasks in the list.";
+        }
+
+        case TODO: {
+            Task t = new ToDo(cmd.getDescription());
+            tasks.add(t);
+            storage.saveTasks(tasks.getTasks());
+            return "Got it. I've added this task:\n  " + t
+                    + "\nNow you have " + tasks.size() + " tasks in the list.";
+        }
+
+        case DEADLINE: {
+            Task t = new Deadline(cmd.getDescription(), cmd.getBy());
+            tasks.add(t);
+            storage.saveTasks(tasks.getTasks());
+            return "Got it. I've added this task:\n  " + t
+                    + "\nNow you have " + tasks.size() + " tasks in the list.";
+        }
+
+        case EVENT: {
+            Task t = new Event(cmd.getDescription(), cmd.getFrom(), cmd.getTo());
+            tasks.add(t);
+            storage.saveTasks(tasks.getTasks());
+            return "Got it. I've added this task:\n  " + t
+                    + "\nNow you have " + tasks.size() + " tasks in the list.";
+        }
+
+        default:
+            throw new NovaException("So sorry, I don't understand what that means.");
+        }
+    }
+
+    public String getResponse(String input) {
+        try {
+            Command cmd = Parser.parse(input);
+            return executeForGui(cmd);
+        } catch (NovaException e) {
+            return "OOPS!!! " + e.getMessage();
+        } catch (IOException e) {
+            return "I couldn't save/load your tasks file.";
+        }
+    }
+
     public static void main(String[] args) {
         new Nova("data/nova.txt").run();
     }
