@@ -16,9 +16,12 @@ Nova is:
 
 ## Quick Start
 
-1. Ensure you have Java 11 or above installed on your computer
-2. Download the latest `nova.jar` from the releases page
-3. Double-click the jar file to launch the GUI, or run `java -jar nova.jar` in terminal for CLI mode
+1. Download the latest `nova.jar` from the releases page
+2. Copy the file to the folder you want to use as Nova’s home folder.
+3. Open a terminal, `cd` into that folder and run
+   ```
+   java -jar nova.jar
+   ```
 4. Type commands in the text box and press Enter or click Send
 5. Your tasks are automatically saved to `data/nova.txt`
 
