@@ -1,9 +1,11 @@
 package nova;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 import exception.NovaException;
-import org.junit.jupiter.api.Test;
 
 public class ParserTest {
 
@@ -41,32 +43,32 @@ public class ParserTest {
     }
 
     @Test
-    public void parse_mark_missingNumber_throws() {
+    public void parseMark_missingNumber_throws() {
         NovaException ex = assertThrows(NovaException.class, () -> Parser.parse("mark "));
         assertEquals("mark needs a task number, e.g. mark 1", ex.getMessage());
     }
 
     @Test
-    public void parse_mark_notANumber_throws() {
+    public void parseMark_notANumber_throws() {
         NovaException ex = assertThrows(NovaException.class, () -> Parser.parse("mark abc"));
         assertEquals("mark needs a task number, e.g. mark 1", ex.getMessage());
     }
 
     @Test
-    public void parse_todo_valid_parsesDescription() throws NovaException {
+    public void parseTodo_validParsesDescription() throws NovaException {
         Command c = Parser.parse("todo read book");
         assertEquals(CommandType.TODO, c.getType());
         assertEquals("read book", c.getDescription());
     }
 
     @Test
-    public void parse_todo_empty_throws() {
+    public void parseTodo_empty_throws() {
         NovaException ex = assertThrows(NovaException.class, () -> Parser.parse("todo"));
         assertEquals("The description of a todo cannot be empty.", ex.getMessage());
     }
 
     @Test
-    public void parse_deadline_valid_parsesFields() throws NovaException {
+    public void parseDeadline_validParsesFields() throws NovaException {
         Command c = Parser.parse("deadline submit report /by 2026-02-10");
         assertEquals(CommandType.DEADLINE, c.getType());
         assertEquals("submit report", c.getDescription());
@@ -74,21 +76,19 @@ public class ParserTest {
     }
 
     @Test
-    public void parse_deadline_missingByToken_throws() {
-        NovaException ex = assertThrows(NovaException.class,
-                () -> Parser.parse("deadline submit report"));
+    public void parseDeadline_missingByToken_throws() {
+        NovaException ex = assertThrows(NovaException.class, () -> Parser.parse("deadline submit report"));
         assertEquals("follow this format: deadline <description> /by <time>", ex.getMessage());
     }
 
     @Test
-    public void parse_deadline_emptyParts_throws() {
-        NovaException ex = assertThrows(NovaException.class,
-                () -> Parser.parse("deadline  /by tomorrow"));
+    public void parseDeadline_emptyParts_throws() {
+        NovaException ex = assertThrows(NovaException.class, () -> Parser.parse("deadline  /by tomorrow"));
         assertEquals("description and by time cannot be empty.", ex.getMessage());
     }
 
     @Test
-    public void parse_event_valid_parsesFields() throws NovaException {
+    public void parseEvent_validParsesFields() throws NovaException {
         Command c = Parser.parse("event camp /from 2026-02-12 /to 2026-02-13");
         assertEquals(CommandType.EVENT, c.getType());
         assertEquals("camp", c.getDescription());
@@ -97,14 +97,13 @@ public class ParserTest {
     }
 
     @Test
-    public void parse_event_missingTokens_throws() {
-        NovaException ex = assertThrows(NovaException.class,
-                () -> Parser.parse("event camp /from 2026-02-12"));
+    public void parseEvent_missingTokens_throws() {
+        NovaException ex = assertThrows(NovaException.class, () -> Parser.parse("event camp /from 2026-02-12"));
         assertEquals("follow this format: event <description> /from <start> /to <end>", ex.getMessage());
     }
 
     @Test
-    public void parse_unknownCommand_throws() {
+    public void parseUnknownCommand_throws() {
         NovaException ex = assertThrows(NovaException.class, () -> Parser.parse("hello"));
         assertEquals("So sorry, I don't understand what that means.", ex.getMessage());
     }
