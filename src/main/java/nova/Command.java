@@ -12,6 +12,20 @@ public class Command {
     private final String to;
 
     private Command(CommandType type, Integer index, String desc, String by, String from, String to) {
+        assert type != null : "CommandType must not be null";
+
+        if (type == CommandType.MARK || type == CommandType.UNMARK || type == CommandType.DELETE) {
+            assert index != null : "Index required for " + type;
+        }
+        if (type == CommandType.TODO || type == CommandType.FIND) {
+            assert desc != null : "Description/keyword required for " + type;
+        }
+        if (type == CommandType.DEADLINE) {
+            assert desc != null && by != null : "Deadline requires desc and by";
+        }
+        if (type == CommandType.EVENT) {
+            assert desc != null && from != null && to != null : "Event requires desc/from/to";
+        }
         this.type = type;
         this.index = index;
         this.desc = desc;

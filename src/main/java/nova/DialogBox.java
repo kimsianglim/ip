@@ -34,6 +34,11 @@ public class DialogBox extends HBox {
             e.printStackTrace();
         }
 
+        assert dialog != null : "FXML injection failed: dialog Label is null";
+        assert displayPicture != null : "FXML injection failed: displayPicture ImageView is null";
+        assert text != null : "Dialog text should not be null";
+        assert img != null : "Dialog image should not be null";
+
         dialog.setText(text);
         displayPicture.setImage(img);
     }
@@ -42,6 +47,7 @@ public class DialogBox extends HBox {
      * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
     private void flip() {
+        assert getChildren().size() == 2 : "DialogBox expected 2 children (Label + ImageView)";
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
