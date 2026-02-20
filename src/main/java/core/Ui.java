@@ -1,4 +1,4 @@
-package nova;
+package core;
 
 import java.util.Scanner;
 
@@ -18,7 +18,7 @@ public class Ui {
      * Prints a greeting, a short prompt, and a separator line to the console.
      */
     public void showWelcome() {
-        System.out.println("Hello! I'm nova.Nova");
+        System.out.println("Hello! I'm nova.nova.Nova");
         System.out.println("What can I do for you?");
         System.out.println(LINE);
     }
@@ -154,3 +154,4 @@ public class Ui {
         System.out.println("Here are the matching tasks in your list:");
     }
 }
+

@@ -63,4 +63,18 @@ public class Task {
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Task)) {
+            return false;
+        }
+        Task other = (Task) obj;
+        return this.description.equals(other.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return description.hashCode();
+    }
 }

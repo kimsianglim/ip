@@ -1,4 +1,4 @@
-package nova;
+package command;
 
 /**
  * Represents a parsed user command.
@@ -89,3 +89,4 @@ public class Command {
         return new Command(CommandType.FIND, null, keyword, null, null, null);
     }
 }
+

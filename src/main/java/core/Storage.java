@@ -1,4 +1,4 @@
-package nova;
+package core;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -40,6 +40,7 @@ public class Storage {
      * <p>
      * Ensures that the storage file and its parent directories exist,
      * then reads and parses each non-empty line into a {@link Task}.
+     * If a line is corrupted, it is skipped with a warning.
      *
      * @return A list of tasks loaded from the file. Returns an empty list
      *         if the file contains no tasks.
@@ -54,7 +55,12 @@ public class Storage {
             if (line.trim().isEmpty()) {
                 continue;
             }
-            tasks.add(parseTask(line));
+            try {
+                tasks.add(parseTask(line));
+            } catch (IOException e) {
+                // Log warning and skip corrupted line
+                System.err.println("Warning: Skipping corrupted line in save file: " + e.getMessage());
+            }
         }
         return tasks;
     }
@@ -77,21 +83,39 @@ public class Storage {
         Files.write(filePath, lines);
     }
 
-    private Task parseTask(String line) {
+    private Task parseTask(String line) throws IOException {
         String[] parts = line.split(" \\| ");
-        String type = parts[0];
-        boolean isDone = parts[1].equals("1");
-        String desc = parts[2];
 
-        switch (type) {
-        case "T":
-            return new ToDo(desc, isDone);
-        case "D":
-            return new Deadline(desc, parts[3], isDone);
-        case "E":
-            return new Event(desc, parts[3], parts[4], isDone);
-        default:
-            throw new IllegalArgumentException("Corrupted save file line: " + line);
+        // Validate that we have the minimum required parts (type, isDone, description)
+        if (parts.length < 3) {
+            throw new IOException("Corrupted save file line (insufficient parts): " + line);
+        }
+
+        String type = parts[0];
+
+        try {
+            boolean isDone = parts[1].equals("1");
+            String desc = parts[2];
+
+            switch (type) {
+            case "T":
+                return new ToDo(desc, isDone);
+            case "D":
+                if (parts.length < 4) {
+                    throw new IOException("Corrupted deadline line (missing deadline): " + line);
+                }
+                return new Deadline(desc, parts[3], isDone);
+            case "E":
+                if (parts.length < 5) {
+                    throw new IOException("Corrupted event line (missing time fields): " + line);
+                }
+                return new Event(desc, parts[3], parts[4], isDone);
+            default:
+                throw new IOException("Corrupted save file line (unknown task type): " + line);
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new IOException("Corrupted save file line (parsing error): " + line, e);
         }
     }
 }
+

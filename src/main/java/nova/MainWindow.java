@@ -1,4 +1,5 @@
 package nova;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -6,6 +7,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
+
 /**
  * Controller for the main GUI.
  */
@@ -29,7 +32,7 @@ public class MainWindow extends AnchorPane {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    /** Injects the Nova instance */
+    /** Injects the nova.Nova instance */
     public void setNova(Nova n) {
         nova = n;
     }
@@ -40,7 +43,7 @@ public class MainWindow extends AnchorPane {
      */
     @FXML
     private void handleUserInput() {
-        assert nova != null : "Nova instance not injected. Call setNova() before user input.";
+        assert nova != null : "nova.Nova instance not injected. Call setNova() before user input.";
         String input = userInput.getText();
         assert input != null : "TextField.getText() should not return null";
         String response = nova.getResponse(input);
@@ -51,3 +54,4 @@ public class MainWindow extends AnchorPane {
         userInput.clear();
     }
 }
+

@@ -1,5 +1,7 @@
-package nova;
+package core;
 
+import command.Command;
+import command.CommandType;
 import exception.NovaException;
 
 /**
@@ -113,3 +115,4 @@ public class Parser {
         }
     }
 }
+

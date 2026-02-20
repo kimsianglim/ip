@@ -116,21 +116,16 @@ public class TaskList {
 
     /**
      * Returns true if an identical task already exists in the list.
+     * <p>
+     * Two tasks are considered identical if they have the same type,
+     * description, and time fields (if applicable). Completion status
+     * is not considered when checking for duplicates.
+     *
+     * @param newTask The task to check for duplicates.
+     * @return True if a duplicate task exists, false otherwise.
      */
     public boolean containsDuplicate(Task newTask) {
-        for (Task existing : tasks) {
-            if (isSameTask(existing, newTask)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Defines what it means for two tasks to be identical.
-     */
-    private boolean isSameTask(Task a, Task b) {
-        return a.toFileString().equalsIgnoreCase(b.toFileString());
+        return tasks.contains(newTask);
     }
 
 }

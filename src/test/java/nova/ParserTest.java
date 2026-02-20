@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import command.Command;
+import command.CommandType;
+import core.Parser;
 import exception.NovaException;
 
 public class ParserTest {

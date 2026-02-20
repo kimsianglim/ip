@@ -1,4 +1,4 @@
-Hello! I'm nova.Nova
+Hello! I'm nova.nova.Nova
 What can I do for you?
 ----------------------------------------
 ----------------------------------------

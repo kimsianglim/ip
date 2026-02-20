@@ -109,4 +109,17 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (from: " + displayFrom + " to: " + displayTo + ")";
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Event)) {
+            return false;
+        }
+        Event other = (Event) obj;
+        return super.equals(obj) && this.from.equals(other.from) && this.to.equals(other.to);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode() * 31 + from.hashCode() * 31 + to.hashCode();
+    }
 }

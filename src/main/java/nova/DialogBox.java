@@ -47,7 +47,7 @@ public class DialogBox extends HBox {
      * Flips the dialog box such that the ImageView is on the left and text on the right.
      */
     private void flip() {
-        assert getChildren().size() == 2 : "DialogBox expected 2 children (Label + ImageView)";
+        assert getChildren().size() == 2 : "nova.DialogBox expected 2 children (Label + ImageView)";
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
@@ -65,3 +65,4 @@ public class DialogBox extends HBox {
         return db;
     }
 }
+

@@ -1,6 +1,5 @@
 package nova;
 
-
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -10,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
- * A GUI for Nova using FXML.
+ * A GUI for nova.Nova using FXML.
  */
 public class Main extends Application {
 
@@ -32,3 +31,4 @@ public class Main extends Application {
         }
     }
 }
+
