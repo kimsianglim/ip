@@ -1,6 +1,6 @@
 # Nova User Guide
 
-![Nova App Screenshot](Ui.png)
+<img src="Ui.png" width="600" height="400" alt="Nova App Screenshot">
 
 SuSuSuSUPERNOVA Nova is a **simple, fast, and elegant task management chatbot** that helps you keep track of your todos, deadlines, and events. Interact with Nova through a clean GUI or CLI interface to manage your tasks efficiently.
 
