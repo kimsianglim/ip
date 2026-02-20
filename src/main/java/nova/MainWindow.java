@@ -27,9 +27,24 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/Charlie.png"));
     private Image novaImage = new Image(this.getClass().getResourceAsStream("/images/IVE.png"));
 
+    /**
+     * Initializes the GUI by binding the scroll pane to the dialog container
+     * and displaying a welcome message.
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        displayWelcome();
+    }
+
+    /**
+     * Displays the welcome message when the GUI initializes.
+     */
+    private void displayWelcome() {
+        String welcomeMessage = "Hello! I'm Nova\nWhat can I do for you?";
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog(welcomeMessage, novaImage)
+        );
     }
 
     /** Injects the nova.Nova instance */
