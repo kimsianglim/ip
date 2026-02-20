@@ -3,24 +3,32 @@
     -fx-background-color: main-color;
 }
 
+
 .text-field {
-    -fx-background-color: #d9ffe2;
-    -fx-font: 20px "Arial";
+    -fx-background-color: #ffffff;
+    -fx-border-color: #737270;
+    -fx-text-fill: #000000;
+    -fx-border-width: 1px;
+    -fx-background-radius: 40;
+    -fx-border-radius: 40;
+    -fx-font: 14px "Arial";
 }
+
 
 .button {
     -fx-background-color: mediumspringgreen;
-    -fx-font: italic bold 16px "Arial";
+    -fx-font: italic bold 12px "Arial";
+    -fx-background-radius: 40;
 }
 
 .button:hover {
     -fx-background-color:cyan;
-    -fx-font-size: 18px;
+    -fx-font-size: 14px;
 }
 
 .button:pressed {
     -fx-background-color:orange;
-    -fx-font-size: 20px;
+    -fx-font-size: 14px;
 }
 
 .scroll-pane,
@@ -30,12 +38,12 @@
 
 .scroll-bar {
     -fx-font-size: 10px;  /* Change width of scroll bar. */
-    -fx-background-color: main-color;
+    -fx-background-color: transparent;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: #ff9cb4;
-    -fx-background-radius: 1em;
+    -fx-background-color: #BEBEBE;
+    -fx-background-radius: 5;
 }
 
 /* Hides the increment and decrement buttons. */
@@ -45,3 +53,10 @@
     -fx-opacity: 0;
 }
 
+.app-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-color: #2c3e50;
+    -fx-text-fill: white;
+    -fx-alignment: center;
+}

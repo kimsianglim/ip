@@ -1,6 +1,7 @@
 package task;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import exception.NovaException;
 
@@ -106,8 +107,10 @@ public class TaskList {
      */
     public ArrayList<Integer> findIndexes(String keyword) {
         ArrayList<Integer> matches = new ArrayList<>();
+        String normalizedKeyword = keyword.toLowerCase(Locale.ROOT);
         for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i).getDescription().contains(keyword)) {
+            String description = tasks.get(i).getDescription();
+            if (description.toLowerCase(Locale.ROOT).contains(normalizedKeyword)) {
                 matches.add(i);
             }
         }

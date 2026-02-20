@@ -24,7 +24,7 @@ public class MainWindow extends AnchorPane {
 
     private Nova nova;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/rei.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/Charlie.png"));
     private Image novaImage = new Image(this.getClass().getResourceAsStream("/images/IVE.png"));
 
     @FXML
