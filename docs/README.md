@@ -65,9 +65,9 @@ Now you have 1 tasks in the list.
 
 **Note:** Nova prevents duplicate tasks - you can't add the same task twice!
 
--For `ToDo` tasks, a duplicate means having the same **description**.
--For `Deadline` tasks, a duplicate means having the same **description** and **due date**.
--For `Event` tasks, a duplicate means having the same **description**, **start time**, and **end time**.
+- For `ToDo` tasks, a duplicate means having the same **description**.
+- For `Deadline` tasks, a duplicate means having the same **description** and **due date**.
+- For `Event` tasks, a duplicate means having the same **description**, **start time**, and **end time**.
 
 ---
 
