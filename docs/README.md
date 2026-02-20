@@ -67,7 +67,7 @@ Got it. I've added this task:
 Now you have 1 tasks in the list.
 ```
 
-**Note:** Nova prevents duplicate tasks - you can't add the same task twice!
+> **Note:** Nova prevents duplicate tasks - you can't add the same task twice!
 
 - For `ToDo` tasks, a duplicate means having the same **description**.
 - For `Deadline` tasks, a duplicate means having the same **description** and **due date**.
@@ -81,7 +81,7 @@ Adds a task with a deadline.
 
 **Format:** `deadline DESCRIPTION /by DATE_OR_TIME`
 
-**Note:** Make sure there is at least one space before /by and after /by. The /by keyword must be present, and both the description and date/time must not be empty.
+> **Note:** Make sure there is at least one space before /by and after /by. The /by keyword must be present, and both the description and date/time must not be empty.
 
 
 **Date formats supported:**
@@ -109,7 +109,7 @@ Adds a task that happens over a period of time.
 
 **Format:** `event DESCRIPTION /from START /to END`
 
-**Note:** Make sure there is at least one space before /from and /to, and at least one space after each keyword. Both /from and /to must be present, and the description, start time, and end time must not be empty.
+> **Note:** Make sure there is at least one space before /from and /to, and at least one space after each keyword. Both /from and /to must be present, and the description, start time, and end time must not be empty.
 
 **Example:**
 ```
@@ -131,7 +131,7 @@ Marks a task as completed.
 
 **Format:** `mark INDEX`
 
-**Note:** Make sure there is at least one space between `mark` and `INDEX`, `INDEX` must not be empty.
+> **Note:** Make sure there is at least one space between `mark` and `INDEX`, `INDEX` must not be empty.
 
 **Example:**
 ```
@@ -144,7 +144,7 @@ Nice! I've marked this task as done:
   [D][X] submit assignment (by: Feb 28 2026)
 ```
 
-**Note:** The index refers to the task number shown in the `list` command.
+> **Note:** The index refers to the task number shown in the `list` command.
 
 ---
 
@@ -154,7 +154,7 @@ Unmarks a completed task.
 
 **Format:** `unmark INDEX`
 
-**Note:** Make sure there is at least one space between `unmark` and `INDEX`, `INDEX` must not be empty.
+> **Note:** Make sure there is at least one space between `unmark` and `INDEX`, `INDEX` must not be empty.
 
 **Example:**
 ```
@@ -175,7 +175,7 @@ Searches for tasks containing the specified keyword. **Case-insensitive!**
 
 **Format:** `find KEYWORD`
 
-**Note:** Make sure there is at least one space between `find` and `KEYWORD`, `KEYWORD` must not be empty.
+> **Note:** Make sure there is at least one space between `find` and `KEYWORD`, `KEYWORD` must not be empty.
 
 **Example:**
 ```
@@ -189,7 +189,7 @@ Here are the matching tasks in your list:
 3. [T][ ] return book to library
 ```
 
-**Note:** Searching for "BOOK", "book", or "Book" will all return the same results!
+> **Note:** Searching for "BOOK", "book", or "Book" will all return the same results!
 
 ---
 
@@ -199,7 +199,7 @@ Removes a task from your list permanently.
 
 **Format:** `delete INDEX`
 
-**Note:** Make sure there is at least one space between `delete` and `INDEX`, `INDEX` must not be empty.
+> **Note:** Make sure there is at least one space between `delete` and `INDEX`, `INDEX` must not be empty.
 
 **Example:**
 ```
