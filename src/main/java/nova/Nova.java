@@ -159,22 +159,31 @@ public class Nova {
         return removed;
     }
 
-    private Task addTodo(String desc) throws IOException {
+    private Task addTodo(String desc) throws IOException, NovaException {
         Task t = new ToDo(desc);
+        if (tasks.containsDuplicate(t)) {
+            throw new NovaException("This task already exists in your list.");
+        }
         tasks.add(t);
         save();
         return t;
     }
 
-    private Task addDeadline(String desc, String by) throws IOException {
+    private Task addDeadline(String desc, String by) throws IOException, NovaException {
         Task t = new Deadline(desc, by);
+        if (tasks.containsDuplicate(t)) {
+            throw new NovaException("This task already exists in your list.");
+        }
         tasks.add(t);
         save();
         return t;
     }
 
-    private Task addEvent(String desc, String from, String to) throws IOException {
+    private Task addEvent(String desc, String from, String to) throws IOException, NovaException {
         Task t = new Event(desc, from, to);
+        if (tasks.containsDuplicate(t)) {
+            throw new NovaException("This task already exists in your list.");
+        }
         tasks.add(t);
         save();
         return t;
@@ -213,19 +222,19 @@ public class Nova {
         return false;
     }
 
-    private boolean handleTodoCli(Command cmd) throws IOException {
+    private boolean handleTodoCli(Command cmd) throws IOException, NovaException {
         Task t = addTodo(cmd.getDescription());
         ui.showTaskAdded(t.toString(), tasks.size());
         return false;
     }
 
-    private boolean handleDeadlineCli(Command cmd) throws IOException {
+    private boolean handleDeadlineCli(Command cmd) throws IOException, NovaException {
         Task t = addDeadline(cmd.getDescription(), cmd.getBy());
         ui.showTaskAdded(t.toString(), tasks.size());
         return false;
     }
 
-    private boolean handleEventCli(Command cmd) throws IOException {
+    private boolean handleEventCli(Command cmd) throws IOException, NovaException {
         Task t = addEvent(cmd.getDescription(), cmd.getFrom(), cmd.getTo());
         ui.showTaskAdded(t.toString(), tasks.size());
         return false;
