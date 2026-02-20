@@ -63,7 +63,11 @@ Got it. I've added this task:
 Now you have 1 tasks in the list.
 ```
 
-**Tip:** Nova prevents duplicate tasks - you can't add the same task twice!
+**Note:** Nova prevents duplicate tasks - you can't add the same task twice!
+
+-For `ToDo` tasks, a duplicate means having the same **description**.
+-For `Deadline` tasks, a duplicate means having the same **description** and **due date**.
+-For `Event` tasks, a duplicate means having the same **description**, **start time**, and **end time**.
 
 ---
 
@@ -129,7 +133,7 @@ Nice! I've marked this task as done:
   [D][X] submit assignment (by: Feb 28 2026)
 ```
 
-💡 **Note:** The index refers to the task number shown in the `list` command.
+**Note:** The index refers to the task number shown in the `list` command.
 
 ---
 
@@ -170,7 +174,7 @@ Here are the matching tasks in your list:
 3. [T][ ] return book to library
 ```
 
-💡 **Tip:** Searching for "BOOK", "book", or "Book" will all return the same results!
+**Note:** Searching for "BOOK", "book", or "Book" will all return the same results!
 
 ---
 
@@ -227,4 +231,4 @@ Bye. Hope to see you again soon!
 | **Exit** | `bye` | `bye` |
 
 
-**Happy task managing with Nova!** ✨
+**Happy task managing with Nova!** 
