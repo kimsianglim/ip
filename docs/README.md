@@ -1,6 +1,6 @@
 # Nova User Guide
 
-<div style="text-align: center;">
+<div style="align: center;">
   <img src="Ui.png" width="400" height="600" alt="Nova App Screenshot">
 </div>
 
