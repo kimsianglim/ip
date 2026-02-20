@@ -53,7 +53,7 @@ Adds a simple task without any date or time.
 
 **Format:** `todo DESCRIPTION`
 
-**Note:** Make sure there is at least one space between `todo` and `DESCRIPTION`, `DESCRIPTION` must not be empty.
+> **Note:** Make sure there is at least one space between `todo` and `DESCRIPTION`, `DESCRIPTION` must not be empty.
 
 **Example:**
 ```
