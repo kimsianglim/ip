@@ -53,6 +53,8 @@ Adds a simple task without any date or time.
 
 **Format:** `todo DESCRIPTION`
 
+**Note:** Make sure there is at least one space between `todo` and `DESCRIPTION`, `DESCRIPTION` must not be empty.
+
 **Example:**
 ```
 todo read book
@@ -79,6 +81,9 @@ Adds a task with a deadline.
 
 **Format:** `deadline DESCRIPTION /by DATE_OR_TIME`
 
+**Note:** Make sure there is at least one space before /by and after /by. The /by keyword must be present, and both the description and date/time must not be empty.
+
+
 **Date formats supported:**
 - `yyyy-MM-dd` (e.g., 2026-02-28)
 - `yyyy-MM-dd HH:mm` (e.g., 2026-02-28 23:59)
@@ -104,6 +109,8 @@ Adds a task that happens over a period of time.
 
 **Format:** `event DESCRIPTION /from START /to END`
 
+**Note:** Make sure there is at least one space before /from and /to, and at least one space after each keyword. Both /from and /to must be present, and the description, start time, and end time must not be empty.
+
 **Example:**
 ```
 event team meeting /from 2026-02-20 /to 2026-02-20
@@ -123,6 +130,8 @@ Now you have 3 tasks in the list.
 Marks a task as completed.
 
 **Format:** `mark INDEX`
+
+**Note:** Make sure there is at least one space between `mark` and `INDEX`, `INDEX` must not be empty.
 
 **Example:**
 ```
@@ -145,6 +154,8 @@ Unmarks a completed task.
 
 **Format:** `unmark INDEX`
 
+**Note:** Make sure there is at least one space between `unmark` and `INDEX`, `INDEX` must not be empty.
+
 **Example:**
 ```
 unmark 2
@@ -163,6 +174,8 @@ OK, I've marked this task as not done yet:
 Searches for tasks containing the specified keyword. **Case-insensitive!**
 
 **Format:** `find KEYWORD`
+
+**Note:** Make sure there is at least one space between `find` and `KEYWORD`, `KEYWORD` must not be empty.
 
 **Example:**
 ```
@@ -185,6 +198,8 @@ Here are the matching tasks in your list:
 Removes a task from your list permanently.
 
 **Format:** `delete INDEX`
+
+**Note:** Make sure there is at least one space between `delete` and `INDEX`, `INDEX` must not be empty.
 
 **Example:**
 ```
