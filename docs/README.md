@@ -2,11 +2,11 @@
 
 ![Nova App Screenshot](Ui.png)
 
-Nova is a **simple, fast, and elegant task management chatbot** that helps you keep track of your todos, deadlines, and events. Interact with Nova through a clean GUI or CLI interface to manage your tasks efficiently.
+SuSuSuSUPERNOVA Nova is a **simple, fast, and elegant task management chatbot** that helps you keep track of your todos, deadlines, and events. Interact with Nova through a clean GUI or CLI interface to manage your tasks efficiently.
 
 Nova is:
+- ~~FAST~~ **_SUPER FAST_** to use
 - **Easy to use**: Simple command-based interface
-- **Fast**: Quick responses and instant task management
 - **Smart**: Case-insensitive search and duplicate detection
 - **Reliable**: Automatic saving to ensure your tasks are never lost
 
@@ -63,7 +63,7 @@ Got it. I've added this task:
 Now you have 1 tasks in the list.
 ```
 
-💡 **Tip:** Nova prevents duplicate tasks - you can't add the same task twice!
+**Tip:** Nova prevents duplicate tasks - you can't add the same task twice!
 
 ---
 
@@ -192,8 +192,6 @@ Noted. I've removed this task:
 Now you have 2 tasks in the list.
 ```
 
-⚠️ **Warning:** This action cannot be undone!
-
 ---
 
 ### Exiting the program: `bye`
@@ -228,36 +226,5 @@ Bye. Hope to see you again soon!
 | **Delete** | `delete INDEX` | `delete 3` |
 | **Exit** | `bye` | `bye` |
 
----
-
-## FAQ
-
-**Q: Where are my tasks saved?**  
-A: Your tasks are automatically saved to `data/nova.txt` in the same folder as the jar file.
-
-**Q: Can I edit the save file directly?**  
-A: Yes, but be careful! The format is: `TYPE | DONE | DESCRIPTION | [DATE_FIELDS]`
-
-**Q: What happens if I add a duplicate task?**  
-A: Nova will show an error: "This task already exists in your list."
-
-**Q: Is the search case-sensitive?**  
-A: No! Searching for "book", "BOOK", or "Book" will all find the same tasks.
-
-**Q: Can I undo a delete?**  
-A: No, deletions are permanent. The task is removed from the save file immediately.
-
----
-
-## Known Issues
-
-- Date parsing only supports ISO format (`yyyy-MM-dd`) and datetime (`yyyy-MM-dd HH:mm`)
-- GUI window size is fixed and cannot be resized dynamically
-
----
-
-## Contact & Support
-
-For bug reports, feature requests, or questions, please open an issue on the GitHub repository.
 
 **Happy task managing with Nova!** ✨
