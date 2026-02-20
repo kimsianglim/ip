@@ -4,7 +4,7 @@
   <img src="Ui.png" width="400" height="600" alt="Nova App Screenshot">
 </div>
 
-SuSuSuSUPERNOVA Nova is a **simple, fast, and elegant task management chatbot** that helps you keep track of your todos, deadlines, and events. Interact with Nova through a clean GUI or CLI interface to manage your tasks efficiently.
+SuSuSuSUPERNOVA!! Nova is a **simple, fast, and elegant task management chatbot** that helps you keep track of your todos, deadlines, and events. Interact with Nova through a clean GUI or CLI interface to manage your tasks efficiently.
 
 Nova is:
 - ~~FAST~~ **_SUPER FAST_** to use
